@@ -1,0 +1,16 @@
+.sticky {
+	display: block;
+}
+
+.sticky-post {
+	background: #999;
+	color: #fff;
+	display: inline-block;
+	font-weight: bold;
+	line-height: 1;
+	padding: .25rem;
+	position: absolute;
+	text-transform: uppercase;
+	top: 0;
+	z-index: 1;
+}

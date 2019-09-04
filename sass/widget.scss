@@ -1,0 +1,46 @@
+
+@import "_function";
+
+  .widget {
+    h2,h3 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.1);;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        color: #999;
+        list-style: none;
+
+        a {
+          color:colors(darked) ;
+          transition: all, 0.5s;
+
+          &:hover {
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    h2,h3 {
+      color: colors(darked) !important;
+    }
+    .widget {
+      h2,h3 {
+        border-bottom: none;
+      }
+      ul {
+        li {
+          a{
+            color:#fff;
+          }
+        }
+      }
+    }
+  }

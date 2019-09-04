@@ -1,0 +1,554 @@
+/*
+Theme Name: aw plus awesome blog
+Theme URI:
+Author: Alfredo
+Author URI:
+Description: Present any worspress website. You get support for Woocommerce BuddyPress and because it responsive look great on mobile device as well on your laptop and ipads
+Requires at least: WordPress 4.9.6
+Version: 2.1.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: aw-plus-awesome-blog
+Tags: one-column, flexible-header, accessibility-ready, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, rtl-language-support, sticky-post, threaded-comments
+This theme, like WordPress, is licensed under the GPL.
+*/
+
+@import "_mixins";
+@import "_function";
+@import "widget";
+@import "mobile_menu";
+@import "_post_and_page";
+@import "_comments";
+@import "_gallery";
+@include font("Fjalla One", "assets/font/FjallaOne-Regular");
+@include font("Roboto Condensed", "assets/font/RobotoCondensed-Regular");
+
+/*Normalize html and body elements,this style is just good to have*/
+html,
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: auto;
+
+  /* == WordPress WYSIWYG Editor Styles == */
+  .gallery-caption {
+    display: block;
+}
+
+  .screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+  }
+
+  .entry-content img {
+    margin: 0 0 1.5em 0;
+  }
+  .alignleft,
+  img.alignleft {
+    margin-right: 1.5em;
+    display: inline;
+    float: left;
+  }
+  .alignright,
+  img.alignright {
+    margin-left: 1.5em;
+    display: inline;
+    float: right;
+  }
+  .aligncenter,
+  img.aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    clear: both;
+  }
+  .alignnone,
+  img.alignnone {
+    /* not sure about this one */
+  }
+  .wp-caption {
+    margin-bottom: 1.5em;
+    text-align: center;
+    padding-top: 5px;
+  }
+  .wp-caption img {
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+  }
+  .wp-caption p.wp-caption-text {
+    line-height: 1.5;
+    font-size: 10px;
+    margin: 0;
+  }
+  .wp-smiley {
+    margin: 0 !important;
+    max-height: 1em;
+  }
+  blockquote.left {
+    margin-right: 20px;
+    text-align: right;
+    margin-left: 0;
+    width: 33%;
+    float: left;
+  }
+  blockquote.right {
+    margin-left: 20px;
+    text-align: left;
+    margin-right: 0;
+    width: 33%;
+    float: right;
+  }
+
+  .size-auto, 
+  .size-full,
+  .size-large,
+  .size-medium,
+  .size-thumbnail {
+    max-width: 100%;
+    height: auto;
+  }
+
+  body {
+    position: relative;
+    padding-bottom: 350px;
+    @include mobile {
+      padding-bottom: 600px;
+    }
+    @include table {
+      padding-bottom: 510px;
+    }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: colors(primary);
+    text-transform: uppercase;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 1.8rem;
+  }
+  a {
+    color: colors(primary);
+    background-color: transparent;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  #wpadminbar {
+    height: 46px;
+    min-width: 300px;
+    position: fixed;
+  }
+  main {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+hr {
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+/* pagination */
+.aw-pagination {
+  a {
+    background: colors(primary);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #00b9eb;
+  }
+}
+
+/* awesome card */
+
+article.aw-card {
+  background: transparent;
+  border: $borde_ligth;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: $box_shadon;
+  margin-bottom: 1rem;
+
+  div.aw-card-image {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+  }
+
+  div.aw-title-card {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  div.metatag {
+    font-size: 0.9em;
+    i {
+      border: none !important;
+    }
+  }
+
+  div.aw-card-footer {
+    padding: 1rem;
+    div.aw-footer-left {
+      display: inline-block;
+      width: 49%;
+
+      i {
+        border: none !important;
+      }
+    }
+    div.aw-footer-rigth {
+      display: inline-block;
+      width: 49%;
+    }
+    a.aw-card-link {
+      padding: 5px;
+      padding: 5px;
+      background-color: #0097bf;
+      border: 1px solid #00b9eb;
+      color: #fff !important;
+      border-radius: 5px;
+    }
+  }
+}
+
+/* Banner */
+
+#main-banner {
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-top: 1px solid #cccccc4d;
+  border-bottom: 1px solid #cccccc4d;
+
+  @include mobile {
+    height: 220px;
+  }
+
+  div.aw-avatar {
+    text-align: center;
+    position: relative;
+    width: 125px;
+    height: 125px;
+    left: 44%;
+    top: 68%;
+    overflow: hidden;
+    border: $borde_ligth;
+    box-shadow: $box_shadon;
+    border-radius: 4px;
+    @include table {
+      left: 40%;
+    }
+    @include mobile {
+      left: 36%;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+/* Single page banner*/
+#single-banner {
+  width: 100%;
+  height: 200px;
+  text-align: left;
+  display: table;
+  article {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgba(233, 236, 239, 0.36);
+    border-top: 1px solid #cccccc4d;
+    border-bottom: 1px solid #cccccc4d;
+    h2 {
+      color: #444;
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* arrow icons */
+
+i {
+  border: solid #17a2b8;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2px;
+  margin-right: 6px;
+  transition: all, 0.5s;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+/*inputs*/
+
+input[type="text"] {
+  border: 1px solid #999;
+  background-color: #e9ecef;
+  padding: 3px;
+  border-radius: 4px;
+  width: 100%;
+}
+input[type="submit"] {
+  background-color: colors(primary);
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 13px;
+  border: 1px solid #00b9eb;
+}
+
+/* search input */
+
+.searchform {
+  input[type="text"] {
+    border: 1px solid #999;
+    background-color: #e9ecef;
+    padding: 3px;
+    border-radius: 4px;
+  }
+  input[type="submit"] {
+    background-color: map-get($theme-colors, "primary");
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 13px;
+    border: 1px solid #00b9eb;
+  }
+}
+
+/* header */
+
+header {
+  div.brand {
+    display: inline-block;
+    width: 49%;
+  }
+  nav#menu_container {
+    display: inline-block;
+    width: 49%;
+    height: auto;
+    padding: 2em;
+    position: relative;
+    ul {
+      list-style: none;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      text-align: right;
+      li {
+        display: inline-block;
+        padding: 5px;
+        padding: 1rem;
+        a {
+          color: #999;
+          transition: all, 0.5s;
+          text-transform: uppercase;
+        }
+        a:hover {
+          color: #444;
+          text-decoration: none;
+        }
+        .sub-menu {
+          display: none;
+          position: absolute;
+          width: 170px;
+          height: auto;
+          border: 1px solid #00b9eb;
+          overflow: auto;
+          border-radius: 3px;
+          background: #0097bf;
+          z-index: 900;
+          padding-top: 0px;
+          padding-bottom: 7px;
+          top: 80px;
+          text-align: left;
+
+          li {
+            width: 100%;
+            padding: 7px;
+            height: 30px;
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    @include table {
+      display: none;
+    }
+  }
+}
+
+/* right sidebar */
+
+aside {
+  @include mobile {
+    display: none;
+  }
+  @include table {
+    display: none;
+  }
+  .widget_nav_menu {
+    ul {
+      list-style: none;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      li {
+        display: block;
+        padding: 0.5rem;
+        a {
+          color: #999;
+          transition: all, 0.5s;
+          text-transform: uppercase;
+        }
+        a:hover {
+          text-decoration: none;
+          color: #444;
+        }
+        .sub-menu li {
+          display: none;
+          &:before {
+            content: "-";
+            display: block;
+            width: 20px;
+            height: 20px;
+            float: left;
+            color: #17a2b8;
+          }
+          a {
+            color: #17a2b8;
+            text-transform: uppercase;
+
+            &:hover {
+              color: #444;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* footer */
+footer {
+  padding-top: 25px;
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  color: aliceblue;
+  background-color: #999;
+
+  section {
+    h1,
+    h2 {
+      color: colors(darked);
+    }
+    @include mobile {
+      text-align: center;
+    }
+  }
+
+  @include table {
+    height: auto;
+    padding-bottom: 70px;
+  }
+
+  nav#menu_container {
+    ul {
+      list-style: none;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+
+      @include mobile {
+        text-align: center;
+      }
+      li {
+        display: block;
+        padding: 0.2rem;
+        a {
+          color: #fff;
+          transition: all, 0.5s;
+        }
+        a:hover {
+          text-decoration: none;
+          color: #444;
+        }
+      }
+    }
+  }
+
+  div.footer-copyright {
+    width: 100%;
+    height: auto;
+    background-color: rgba(116, 116, 116, 0.49);
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    padding: 0.5rem;
+    border-top: 1px solid rgba(73, 80, 87, 0.2784313725490196);
+    p {
+      width: 20%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}

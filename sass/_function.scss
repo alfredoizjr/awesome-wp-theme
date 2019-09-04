@@ -1,0 +1,5 @@
+@import "_variables";
+
+@function colors($color){
+    @return map-get($theme-colors, $color)
+}
